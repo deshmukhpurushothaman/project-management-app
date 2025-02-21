@@ -1,12 +1,13 @@
 "use client";
 import React, { use, useState } from "react";
 import ProjectHeader from "../ProjectHeader";
+import BoardView from "../BoardView";
 
 type Props = {
   params: { id: string };
 };
 
-const Project = ({ params }: { params: Promise<Props> }) => {
+const Project = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
   const [activeTab, setActiveTab] = useState("Board");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
@@ -14,7 +15,9 @@ const Project = ({ params }: { params: Promise<Props> }) => {
     <div>
       {/* MODAL NEW TASKS */}
       <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-      {/* {activeTab === "Board" && <Board />} */}
+      {activeTab === "Board" && (
+        <BoardView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
     </div>
   );
 };
