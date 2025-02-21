@@ -2,6 +2,7 @@
 import React, { use, useState } from "react";
 import ProjectHeader from "../ProjectHeader";
 import BoardView from "../BoardView";
+import ListView from "../ListView";
 
 type Props = {
   params: { id: string };
@@ -17,6 +18,9 @@ const Project = ({ params }: { params: Promise<{ id: string }> }) => {
       <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === "Board" && (
         <BoardView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+      {activeTab === "List" && (
+        <ListView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
     </div>
   );
